@@ -7,16 +7,12 @@ import { User } from './user.entity';
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    private userRepository: Repository<User>,
   ) {}
 
-  async updateProblemsFlag(): Promise<number> {
-    const usersWithProblems = await this.usersRepository.count({
-      where: { problems: true },
-    });
-
-    await this.usersRepository.update({ problems: true }, { problems: false });
-
+  async fixProblems(): Promise<number> {
+    const usersWithProblems = await this.userRepository.count({ where: { hasProblems: true } });
+    await this.userRepository.update({ hasProblems: true }, { hasProblems: false });
     return usersWithProblems;
   }
 }

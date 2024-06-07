@@ -18,5 +18,5 @@ export class User {
   gender: string;
 
   @Column({ default: false })
-  problems: boolean;
+  hasProblems: boolean;
 }

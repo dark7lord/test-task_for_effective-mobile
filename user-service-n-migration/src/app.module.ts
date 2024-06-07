@@ -11,8 +11,8 @@ import { UserModule } from './user/user.module';
       username: 'gopal',
       password: '',
       database: 'users_service',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      autoLoadEntities: true,
+      synchronize: true, // В продакшене рекомендуется использовать миграции вместо синхронизации
     }),
     UserModule,
   ],
